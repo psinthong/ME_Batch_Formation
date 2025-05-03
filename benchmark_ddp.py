@@ -281,18 +281,18 @@ if __name__ == '__main__':
         sw = SlidingWindowView(args.seq_len, 1, pred_len, label_len)
         sampler = DistributedSampler(dset, rank=rank, shuffle=False, drop_last=True)
         dl = DataLoader(dset, batch_size=None, collate_fn=sw.slide_collate_fn,
-                        pin_memory=False, num_workers=0, sampler=sampler)
+                        pin_memory=False, sampler=sampler)
     elif args.mode == 'optimize_in_mem':
         dset = DummyPretrainDataset(data_x, data_y, num_features, time_steps, seq_len=args.seq_len, pred_len=pred_len,
                                     label_len=label_len, bs=args.batch_size, device=device, in_mem=True)
         sw = SlidingWindowView(args.seq_len, 1, pred_len, label_len)
         sampler = DistributedSampler(dset, rank=rank, shuffle=False, drop_last=True)
-        dl = DataLoader(dset, batch_size=None, collate_fn=sw.slide_collate_fn, pin_memory=False, num_workers=0, sampler=sampler)
+        dl = DataLoader(dset, batch_size=None, collate_fn=sw.slide_collate_fn, pin_memory=False, sampler=sampler)
     else:
         sset = DummyPretrainStackDataset(data_x, data_y, num_features, time_steps, seq_len=args.seq_len, pred_len=pred_len,
                                          label_len=label_len)
         sampler = DistributedSampler(sset, rank=rank, shuffle=False, drop_last=True)
-        dl = DataLoader(sset, batch_size=args.batch_size, shuffle=False, drop_last=True, num_workers=0, sampler=sampler)
+        dl = DataLoader(sset, batch_size=args.batch_size, shuffle=False, drop_last=True, sampler=sampler)
 
     models = {'PatchTST': PatchTST, 'Informer': Informer, 'Autoformer': Autoformer, 'DLinear': DLinear, 'Transformer': Transformer}
     print('# Batches: ', len(dl))

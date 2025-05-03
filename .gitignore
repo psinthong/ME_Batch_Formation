@@ -1,0 +1,19 @@
+benchmark_single_process.py
+**/*.ipynb
+__pycache__/
+venv/
+.env/
+.venv/
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+**/*.log

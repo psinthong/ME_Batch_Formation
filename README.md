@@ -26,6 +26,10 @@ You can adjust the hyperparameters based on your needs (e.g. different patch len
 
 We appreciate the following github repo very much for the valuable code base and datasets:
 
+https://github.com/yuqinie98/PatchTST
+
+https://huggingface.co/docs/transformers/en/model_doc/patchtst
+
 https://github.com/cure-lab/LTSF-Linear
 
 https://github.com/zhouhaoyi/Informer2020
